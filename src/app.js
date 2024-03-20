@@ -12,6 +12,8 @@ import sessionsRouter from './routes/sessions.router.js';
 import config from './config/config.js';
 import cors from 'cors';
 
+//modificar el cors para que me admita dotas la url
+app.use(cors({ origin: true, credentials: true }));
 
 
 const app = express();
@@ -32,7 +34,6 @@ const swaggerOptions = {
 
 const specs = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
-app.use(cors({ origin: config.localHost, methods: ['GET', 'POST', 'PUT'] }));
 
 
 app.use(express.json());
