@@ -10,10 +10,12 @@ import petsRouter from './routes/pets.router.js';
 import adoptionsRouter from './routes/adoption.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 import config from './config/config.js';
+import cors from 'cors';
+
 
 
 const app = express();
-const PORT = config.port || 8080;
+const PORT = config.port || 8081;
 mongoose.set('strictQuery', false);
 const connection = mongoose.connect(config.mongoUrl);
 const swaggerOptions = {
@@ -30,6 +32,8 @@ const swaggerOptions = {
 
 const specs = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
+app.use(cors({ origin: config.localHost, methods: ['GET', 'POST', 'PUT'] }));
+
 
 app.use(express.json());
 app.use(cookieParser());
