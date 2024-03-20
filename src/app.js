@@ -16,7 +16,8 @@ import cors from 'cors';
 
 
 const app = express();
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: config.localHost, methods: ['GET', 'POST', 'PUT'] }));
+
 const PORT = config.port || 8081;
 mongoose.set('strictQuery', false);
 const connection = mongoose.connect(config.mongoUrl);
