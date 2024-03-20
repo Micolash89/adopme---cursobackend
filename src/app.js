@@ -13,10 +13,10 @@ import config from './config/config.js';
 import cors from 'cors';
 
 //modificar el cors para que me admita dotas la url
-app.use(cors({ origin: true, credentials: true }));
 
 
 const app = express();
+app.use(cors({ origin: true, credentials: true }));
 const PORT = config.port || 8081;
 mongoose.set('strictQuery', false);
 const connection = mongoose.connect(config.mongoUrl);
