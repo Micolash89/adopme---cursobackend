@@ -12,13 +12,11 @@ import sessionsRouter from './routes/sessions.router.js';
 import config from './config/config.js';
 import cors from 'cors';
 
-//modificar el cors para que me admita dotas la url
-
-
 const app = express();
+//modificar el cors para que me admita todas la url
 app.use(cors({ origin: config.localHost, methods: ['GET', 'POST', 'PUT'] }));
 
-const PORT = config.port || 8081;
+const PORT = config.port || 8080;
 mongoose.set('strictQuery', false);
 const connection = mongoose.connect(config.mongoUrl);
 const swaggerOptions = {
